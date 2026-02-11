@@ -1,0 +1,36 @@
+replicaCount: 1
+
+image:
+  repository: nginx
+  tag: "1.25-alpine"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+env:
+  LOG_LEVEL: "info"
+  MODEL_VERSION: "v2.3"
+  PAYMENTS_API_URL: "http://payments-api.payments-dev.svc:80"
+  CONFIDENCE_THRESHOLD: "0.85"
+
+nodeSelector: {}
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilization: 80
+
+podDisruptionBudget:
+  enabled: false
+  minAvailable: 1

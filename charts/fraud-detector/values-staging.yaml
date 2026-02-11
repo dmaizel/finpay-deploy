@@ -1,0 +1,6 @@
+replicaCount: 1
+
+env:
+  LOG_LEVEL: "info"
+  PAYMENTS_API_URL: "http://payments-api.payments-staging.svc:80"
+  CONFIDENCE_THRESHOLD: "0.75"

@@ -1,0 +1,5 @@
+replicaCount: 2
+
+env:
+  API_URL: "http://merchant-api.merchant-staging.svc:80"
+  FEATURE_KYC_V2: "true"

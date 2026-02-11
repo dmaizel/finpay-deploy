@@ -1,0 +1,34 @@
+replicaCount: 1
+
+image:
+  repository: nginx
+  tag: "1.25-alpine"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi
+
+env:
+  LOG_LEVEL: "info"
+  DB_HOST: "postgres.finpay.internal"
+  DB_NAME: "payments"
+  KAFKA_BROKERS: "kafka.finpay.internal:9092"
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilization: 80
+
+podDisruptionBudget:
+  enabled: false
+  minAvailable: 1

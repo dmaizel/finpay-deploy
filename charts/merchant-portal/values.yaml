@@ -1,0 +1,35 @@
+replicaCount: 1
+
+image:
+  repository: nginx
+  tag: "1.25-alpine"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi
+
+env:
+  API_URL: "http://merchant-api.merchant-dev.svc:80"
+  CDN_URL: "https://cdn.finpay.io"
+  FEATURE_KYC_V2: "false"
+
+nodeSelector: {}
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilization: 80
+
+podDisruptionBudget:
+  enabled: false
+  minAvailable: 1

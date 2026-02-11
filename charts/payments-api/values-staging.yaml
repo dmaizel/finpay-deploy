@@ -1,0 +1,14 @@
+replicaCount: 2
+
+env:
+  LOG_LEVEL: "info"
+  DB_HOST: "postgres-staging.finpay.internal"
+  DB_NAME: "payments_staging"
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi

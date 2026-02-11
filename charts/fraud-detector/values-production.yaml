@@ -1,0 +1,14 @@
+replicaCount: 2
+
+env:
+  LOG_LEVEL: "warn"
+  PAYMENTS_API_URL: "http://payments-api.payments-prod.svc:80"
+  CONFIDENCE_THRESHOLD: "0.85"
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 512Mi
+  limits:
+    cpu: 2000m
+    memory: 2Gi
